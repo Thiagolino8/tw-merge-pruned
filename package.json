@@ -1,0 +1,66 @@
+{
+  "name": "tw-merge-pruned",
+  "version": "0.2.1",
+  "description": "Merge de classes Tailwind gerado a partir do inventário de cada projeto, com runtime pequeno.",
+  "keywords": [
+    "bundle-size",
+    "classes",
+    "codegen",
+    "tailwind-merge",
+    "tailwindcss",
+    "vite"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thiagolino8/tw-merge-pruned.git"
+  },
+  "bin": {
+    "tw-merge-pruned": "src/cli.mjs"
+  },
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/generator.d.mts",
+      "import": "./src/generator.mjs"
+    },
+    "./vite": {
+      "types": "./src/vite.d.mts",
+      "import": "./src/vite.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:types": "tsrs --noEmit --strict --module nodenext --target es2023 --skipLibCheck --checkers 1 test/types.mts",
+    "check": "node --run test && node --run test:types",
+    "prepack": "node --run check"
+  },
+  "dependencies": {
+    "oxc-parser": "0.157.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "tsrs": "0.20.1-ts7.1.0-beta",
+    "vite": "8.3.4"
+  },
+  "peerDependencies": {
+    "vite": "^7.0.0 || ^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=24.2"
+  },
+  "packageManager": "bun@1.4.4"
+}
